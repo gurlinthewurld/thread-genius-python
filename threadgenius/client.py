@@ -10,7 +10,7 @@ logger.setLevel(logging.INFO)
 logger.setLevel(logging.DEBUG)
 
 API_VERSION = 1
-BASE_URL = 'http://api-dev.threadgenius.co/v%d' % API_VERSION
+BASE_URL = 'http://api.threadgenius.co/v%d' % API_VERSION
 
 
 class ThreadGenius(object):
