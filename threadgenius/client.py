@@ -24,9 +24,7 @@ class ThreadGenius(object):
         """
         endpoint = '/catalog'
         data = {
-            'catalog': {
-                'name': catalog_name
-            }
+            'name': catalog_name
         }
         res = requests.post(BASE_URL + endpoint, auth=(self.api_key, None), json=data)
 
