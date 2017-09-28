@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-VERSION = (0, 0, 4)
+VERSION = (0, 0, 8)
 __version__ = VERSION
 __versionstr__ = '.'.join(map(str, VERSION))
 
@@ -12,7 +12,7 @@ except ImportError:
     from distutils.core import setup
 
 setup(
-    name="thread-genius",
+    name="thread-genius-dev",
     description='Thread Genius API Python Client',
     version=__versionstr__,
     author='Thread Genius',
