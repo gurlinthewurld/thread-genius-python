@@ -10,7 +10,7 @@ logger.setLevel(logging.INFO)
 logger.setLevel(logging.DEBUG)
 
 API_VERSION = 1
-BASE_URL = 'http://api.threadgenius.co/v%d' % API_VERSION
+BASE_URL = '174.129.121.241/v%d' % API_VERSION
 
 
 class ThreadGenius(object):
@@ -180,6 +180,14 @@ class ThreadGenius(object):
 
         return res.json()
 
+    def add_catalog_object(self, catalog_gid, object):
+        """
+
+        :type catalog_gid:
+        :param object: threadgenius.types.CatalogObject
+        """
+        return self.add_catalog_objects(catalog_gid, [object])
+
     def add_catalog_objects(self, catalog_gid, objects):
         """
 
@@ -266,5 +274,12 @@ class ThreadGenius(object):
 
         endpoint = '/catalog/' + catalog_gid + '/search'
         res = requests.post(BASE_URL + endpoint, auth=(self.api_key, None), json=data)
+
+        return res.json()
+
+    def get_usage_summary(self):
+
+        endpoint = '/usage'
+        res = requests.get(BASE_URL + endpoint, auth=(self.api_key, None))
 
         return res.json()
