@@ -13,7 +13,7 @@ except ImportError:
     from distutils.core import setup
 
 setup(
-    name="thread-genius-dev",
+    name="thread-genius",
     description='Thread Genius API Python Client',
     version=__versionstr__,
     author='Thread Genius',
