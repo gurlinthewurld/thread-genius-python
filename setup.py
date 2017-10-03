@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 
-<<<<<<< HEAD
-VERSION = (0, 0, 10)
-=======
-VERSION = (0, 0, 5)
->>>>>>> efb3489912cecbef8817aaab6ed7346791eb1bda
+
+VERSION = (0, 0, 6)
 __version__ = VERSION
 __versionstr__ = '.'.join(map(str, VERSION))
 
