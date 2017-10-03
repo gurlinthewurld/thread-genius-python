@@ -283,3 +283,18 @@ class ThreadGenius(object):
         res = requests.post(BASE_URL + endpoint, auth=(self.api_key, None), json=data)
 
         return res.json()
+
+    def add_catalog_object(self, catalog_gid, object):
+        """
+
+        :type catalog_gid: string
+        :param object: threadgenius.types.CatalogObject
+        """
+        return self.add_catalog_objects(catalog_gid, [object])
+
+    def get_usage_summary(self):
+
+        endpoint = '/usage'
+        res = requests.get(BASE_URL + endpoint, auth=(self.api_key, None))
+
+        return res.json()
