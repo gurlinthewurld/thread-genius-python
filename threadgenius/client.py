@@ -10,8 +10,7 @@ logger.setLevel(logging.INFO)
 logger.setLevel(logging.DEBUG)
 
 API_VERSION = 1
-BASE_URL = 'http://174.129.121.241/v%d' % API_VERSION
-
+BASE_URL = 'https://api.threadgenius.co/v%d' % API_VERSION
 
 class ThreadGenius(object):
     def __init__(self, api_key):
@@ -40,7 +39,7 @@ class ThreadGenius(object):
 
         return res.json()
 
-    def get_all_catalogs(self):
+    def list_all_catalogs(self):
         endpoint = '/catalog'
         res = requests.get(BASE_URL + endpoint, auth=(self.api_key, None))
 
@@ -104,7 +103,7 @@ class ThreadGenius(object):
 
         return res.json()
 
-    def get_all_tags(self, next_key=None):
+    def list_all_tags(self, next_key=None):
         """
 
         :type next_key: string
@@ -166,7 +165,7 @@ class ThreadGenius(object):
 
         return res.json()
 
-    def get_all_detections(self, next_key=None):
+    def list_all_detections(self, next_key=None):
         """
 
         :param next_key: string
@@ -180,13 +179,6 @@ class ThreadGenius(object):
 
         return res.json()
 
-    def add_catalog_object(self, catalog_gid, object):
-        """
-
-        :type catalog_gid:
-        :param object: threadgenius.types.CatalogObject
-        """
-        return self.add_catalog_objects(catalog_gid, [object])
 
     def add_catalog_objects(self, catalog_gid, objects):
         """
@@ -234,6 +226,21 @@ class ThreadGenius(object):
 
         return res.json()
 
+    def list_all_catalog_objects(self, catalog_gid, next_key=None):
+        """
+
+        :type catalog_gid: string
+        :type next_key: string
+        """
+        endpoint = '/catalog/' + catalog_gid + '/object'
+
+        if next_key:
+            endpoint += '?next_key=%s' % next_key
+
+        res = requests.get(BASE_URL + endpoint, auth=(self.api_key, None))
+
+        return res.json()
+
     def search_by_keywords(self, catalog_gid, keywords, n_results):
         """
 
@@ -274,12 +281,5 @@ class ThreadGenius(object):
 
         endpoint = '/catalog/' + catalog_gid + '/search'
         res = requests.post(BASE_URL + endpoint, auth=(self.api_key, None), json=data)
-
-        return res.json()
-
-    def get_usage_summary(self):
-
-        endpoint = '/usage'
-        res = requests.get(BASE_URL + endpoint, auth=(self.api_key, None))
 
         return res.json()
